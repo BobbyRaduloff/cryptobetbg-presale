@@ -3,13 +3,23 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Vice';
-  src: url("/fonts/ViceCitySans.otf") format('opentype');
+  font-family: "Vice";
+  src: url("/fonts/ViceCitySans.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'GraveSnatchers';
+  font-family: "GraveSnatchers";
   src: url("/fonts/GraveSnatchers.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Akira";
+  src: url("/fonts/Akira.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Tommy";
+  src: url("/fonts/Tommy.otf") format("opentype");
 }
 
 @layer utilities {
@@ -19,46 +29,169 @@
     background-repeat: no-repeat;
   }
 
-  .box-glow-vblue {
-    box-shadow: 0px 0px 5px 2.5px #556DC8;
-  }
-  .box-glow-vorange {
-    box-shadow: 0px 0px 5px 2.5px #FF6C11;
-  }
-  .box-glow-vpink {
-    box-shadow: 0px 0px 5px 2.5px #D40078;
-  }
-  .box-glow-vpurple {
-    box-shadow: 0px 0px 5px 2.5px #540D6E;
-  }
-  .box-glow-vwhite {
-    box-shadow: 0px 0px 5px 2.5px #F5F0F6;
-  }
-  .box-glow-vblack {
-    box-shadow: 0px 0px 5px 2.5px #131200;
+  .bg-nogif {
+    background-color: #131313;
   }
 
-  .box-shadow-vpurple {
-    box-shadow: 6px 6px 0px 0px #540D6E;
+  .box-glow-vblue {
+    box-shadow: 0px 0px 1px 0.5px #556dc8;
+  }
+  .box-glow-vorange {
+    box-shadow: 0px 0px 3px 1.5px #EE9554;
+  }
+  .box-glow-vred {
+    box-shadow: 0px 0px 1px 0.5px #ed1d49;
+  }
+  .box-glow-vpurple {
+    box-shadow: 0px 0px 3px 1.5px #a162de;
+  }
+  .box-glow-vwhite {
+    box-shadow: 0px 0px 3px 0.5px #f5f0f6aa;
+  }
+  .box-glow-vblack {
+    box-shadow: 0px 0px 1px 0.5px #131200;
   }
 
   .text-glow-vblue {
-    text-shadow: 0px 0px 5px #556DC8;
+    text-shadow: 0px 1px 0.5px #556dc8;
   }
   .text-glow-vorange {
-    text-shadow: 0px 0px 5px #FF6C11;
+    text-shadow: 0px 2px 2px #EE9554;
   }
-  .text-glow-vpink {
-    text-shadow: 0px 0px 5px #D40078;
+  .text-glow-vred {
+    text-shadow: 0px 1px 0.5px #ed1d49;
   }
   .text-glow-vpurple {
-    text-shadow: 0px 0px 5px #540D6E;
+    text-shadow: 1px 2px 2px #a162de;
   }
   .text-glow-vwhite {
-    text-shadow: 0px 0px 5px #F5F0F6;
+    text-shadow: 0px 1px 0.5px #f5f0f6;
   }
   .text-glow-vblack {
-    text-shadow: 0px 0px 5px #131200;
+    text-shadow: 0px 1px 0.5px #131200;
+  }
+
+  .rounded-glow-vblue {
+    @apply box-glow-vblue bg-vblue rounded-xl;
+  }
+
+  .rounded-glow-vorange {
+    @apply box-glow-vorange bg-vorange rounded-xl;
+  }
+
+  .rounded-glow-vred {
+    @apply box-glow-vred bg-vred rounded-xl;
+  }
+
+  .rounded-glow-vpurple {
+    @apply box-glow-vpurple bg-vpurple rounded-xl;
+  }
+
+  .rounded-glow-vwhite {
+    @apply box-glow-vwhite bg-vwhite rounded-xl;
+  }
+
+  .rounded-glow-vblack {
+    @apply box-glow-vblack bg-vblackß rounded-xl;
+  }
+
+  .text-shadow {
+    text-shadow: 0px 4px 4px #272626;
+  }
+
+  .progress-shadow {
+    filter: drop-shadow(0 3px 2px rgb(0 0 0 / 0.1))
+      drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  }
+
+  .bg-roulette {
+    background-image: url("/roulette.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-blackjack {
+    background-image: url("/blackjack.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-slots {
+    background-image: url("/slots.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .background-gradient-animate:hover {
+    background-size: 400%;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset; 
+    -moz-background-clip: unset;
+    -moz-text-fill-color: unset;
+  }
+
+  .background-gradient-animate {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    animation: gradientAnimation 4s ease infinite;
+  }
+
+  @keyframes gradientAnimation {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    33% {
+      background-position: 33% 50%;
+    }
+    66% {
+      background-position: 66% 50%;
+    }
+  }
+
+  .chip {
+    background-size: 50%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .youown {
+    background: url("/youown.svg");
+    @apply chip;
+    background-position: 52.5% 50%;
+  }
+
+  .youalwayswin {
+    background: url("/youalwayswin.svg");
+    @apply chip;
+  }
+
+  .oneclass {
+    background: url("/oneclass.svg");
+    @apply chip;
+  }
+
+  .dice {
+    background: url("/dice.svg");
+    @apply chip;
+    background-size: 75%;
+  }
+
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
   }
 
 }
@@ -74,7 +207,7 @@ body {
   width: 100vw;
   min-height: 100vh;
   height: 100vh;
-  @apply bg-vblack;
+  @apply bg-nogif;
 }
 
 a {
@@ -84,4 +217,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.grecaptcha-badge { 
+  visibility: hidden;
 }
