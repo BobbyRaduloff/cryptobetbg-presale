@@ -20,6 +20,8 @@ import { Hamburger } from "../components/Hamburger";
 import useSWR from "swr";
 import { Footer } from "../components/Footer";
 import { List } from "../components/List";
+import { useIsLarge } from "../lib/useWindowDimensions";
+import { Navbar } from "../components/Navbar";
 
 const WhatYouGet = () => {
   const Bullet = ({ children }) => (
@@ -459,6 +461,8 @@ export default function Home({}) {
   const [loggedIn, setLoggedIn] = React.useState(!true);
   const [data, setData] = React.useState(null);
 
+  const isLarge = useIsLarge();
+
   useSWR(
     "/api/presale",
     (...args) =>
@@ -483,7 +487,7 @@ export default function Home({}) {
 
   return (
     <div className="min-h-screen w-screen flex flex-col justify-top items-center bg-nogif">
-      <Hamburger />
+      {isLarge ? <Navbar /> : <Hamburger />}
       <Title className="mt-[5rem]" />
       <Hero />
       {(() => {
