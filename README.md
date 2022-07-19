@@ -2,7 +2,7 @@
 - `npm install` in the repo folder.
 - install mongodb server
 - fill in the following variables in a file called `.env.local`:
-```toml
+```
 MONGODB_URI=mongodb://127.0.0.1:27017
 MONGODB_DB=cryptobet # make sure to create this database in mongo
 SECRET_COOKIE_PASSWORD=<any random string>
