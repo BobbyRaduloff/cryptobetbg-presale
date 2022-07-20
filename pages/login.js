@@ -9,6 +9,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../components/Button";
 import { useRouter } from "next/router";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useIsLarge } from "../lib/useWindowDimensions";
+import { Navbar } from "../components/Navbar";
 
 const Title = ({ children }) => (
   <div className="text-center font-akira text-4xl flex flex-col justify-center items-center text-vwhite min-w-full mt-4">
@@ -18,6 +20,8 @@ const Title = ({ children }) => (
 );
 
 export default function Login({}) {
+  const isLarge = useIsLarge();
+
   useUser({ ifLogged: "/profile" });
   const router = useRouter();
   const [recaptchaCode, setRecaptchaCode] = React.useState(undefined);
@@ -80,7 +84,7 @@ export default function Login({}) {
       <Box className="flex flex-row justify-center my-2">
         <form
           method="post"
-          className="flex flex-col min-w-[84vw] px-[4vw]"
+          className="flex flex-col min-w-[84vw] lg:min-w-[50vw] px-[4vw]"
           onSubmit={handleSubmit}
         >
           <label htmlFor="email" className="text-vwhite text-sans mt-2">
@@ -121,7 +125,7 @@ export default function Login({}) {
           <div className="flex flex-row min-w-full justify-center mt-4 mb-2">
             <Button
               text="LOGIN"
-              className="min-w-[6rem] max-w-[10rem] text-lg p-[0.5rem]"
+              className="min-w-[6rem] max-w-[10rem] text-lg"
             />
           </div>
         </form>
@@ -130,12 +134,12 @@ export default function Login({}) {
   };
 
   return (
-    <div className="flex flex-col justify-start min-h-screen align-top">
-      <Hamburger />
-      <div className="flex flex-col justify-center mt-[4rem] px-4">
+    <div className="flex flex-col justify-start items-center min-h-screen align-top max-w-full">
+      {isLarge ? <Navbar /> : <Hamburger />}
+      <div className="flex flex-col justify-center mt-[4rem] px-4 lg:max-w-[50%]">
         <Title>Login</Title>
+        <RegisterForm />
       </div>
-      <RegisterForm />
       <Footer className="absolute bottom-0" />
     </div>
   );

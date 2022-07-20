@@ -92,7 +92,7 @@
   }
 
   .rounded-glow-vblack {
-    @apply box-glow-vblack bg-vblackß rounded-xl;
+    @apply box-glow-vblack bg-vblack rounded-xl;
   }
 
   .text-shadow {
@@ -207,7 +207,7 @@ body {
   width: 100vw;
   min-height: 100vh;
   height: 100vh;
-  @apply bg-nogif;
+  @apply bg-nogif overflow-x-hidden;
 }
 
 a {

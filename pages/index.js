@@ -25,16 +25,19 @@ import { Navbar } from "../components/Navbar";
 
 const WhatYouGet = () => {
   const Bullet = ({ children }) => (
-    <p className="text-lg text-vwhite">{children}</p>
+    <p className="text-lg text-vwhite lg:text-2xl">{children}</p>
   );
 
+  const isLarge = useIsLarge();
+
   return (
-    <div className="flex flex-col min-w-full justify-center mt-4">
+    <div className="flex flex-col min-w-full lg:min-w-[50%] justify-start min-h-full mt-4 lg:mt-0">
       <div className="min-w-full flex flex-col justify-center mb-2">
         <p className="ml-4 font-semibold text-2xl text-vwhite text-center font-akira">
           What you get
         </p>
       </div>
+
       <ShinyBox>
         <List>
           <Bullet>
@@ -59,7 +62,7 @@ const WhatYouGet = () => {
 
 const ChipsSell = () => {
   const Chip = ({ icon, title, text }) => (
-    <div className="flex flex-col justify-center  items-center m-4 max-w-[32rem]">
+    <div className="flex flex-col justify-center items-center m-4 max-w-[24rem]">
       <div className="flex flex-row justify-center">
         <Image
           src={chip}
@@ -104,30 +107,38 @@ const ChipsSell = () => {
   );
 };
 
-const Hero = () => (
-  <div className="flex flex-row min-w-full justify-evenly mt-8 px-2">
-    <div className="flex flex-col justify-top">
-      <Image src={token_angle} alt="token logo" width={184} height={184} />
+const Hero = () => {
+  const isLarge = useIsLarge();
+
+  return (
+    <div className="flex flex-row min-w-full lg:min-w-[50%] justify-evenly mt-8 lg:mt-0">
+      <div className="flex flex-col justify-top">
+        {isLarge ? (
+          <Image src={token_angle} alt="token logo" width={256} height={256} />
+        ) : (
+          <Image src={token_angle} alt="token logo" width={184} height={184} />
+        )}
+      </div>
+      <div className="flex flex-col justify-evenly items-end min-h-[200px] ">
+        <Link href="/profile">
+          <a>
+            <Button text="Buy Early" className="min-w-[10rem] text-lg" />
+          </a>
+        </Link>
+        <Link href="/litepaper.pdf">
+          <a target="_blank">
+            <Button text="Litepaper" className="min-w-[11rem] text-lg" />
+          </a>
+        </Link>
+        <Link href="https://t.me/+szz6qkGwgpExMzM0">
+          <a>
+            <Button text="Community" className="min-w-[12rem] text-lg" />
+          </a>
+        </Link>
+      </div>
     </div>
-    <div className="flex flex-col justify-evenly items-end min-h-[200px] ">
-      <Link href="/profile">
-        <a>
-          <Button text="Buy Early" className="min-w-[10rem] text-lg" />
-        </a>
-      </Link>
-      <Link href="/litepaper.pdf">
-        <a target="_blank">
-          <Button text="Litepaper" className="min-w-[11rem] text-lg" />
-        </a>
-      </Link>
-      <Link href="https://t.me/+szz6qkGwgpExMzM0">
-        <a>
-          <Button text="Community" className="min-w-[12rem] text-lg" />
-        </a>
-      </Link>
-    </div>
-  </div>
-);
+  );
+};
 
 const Contact = ({ className }) => {
   const ContactForm = () => {
@@ -163,10 +174,10 @@ const Contact = ({ className }) => {
     };
 
     return (
-      <Box className="flex flex-row justify-center my-2">
+      <Box className="flex flex-row justify-center my-2 max-w-[100%]">
         <form
           method="post"
-          className="flex flex-col min-w-[84vw] px-[4vw]"
+          className="flex flex-col min-w-[84vw] lg:min-w-[50vw] px-[4vw]"
           onSubmit={handleSubmit}
         >
           <label htmlFor="email" className="text-vwhite text-sans mt-2">
@@ -221,7 +232,7 @@ const Contact = ({ className }) => {
 
   return (
     <div
-      className={`flex flex-col justify-center min-w-full mt-8 ${className}`}
+      className={`flex flex-col justify-center min-w-full lg:min-w-[50%] lg:max-w-[50%] mt-8 ${className}`}
     >
       <Subtitle>Contact Us</Subtitle>
       <ContactForm />
@@ -292,8 +303,8 @@ const YourTokens = ({ tokens, referalCode }) => (
 );
 
 const PreSaleCountdown = ({ start, end, className = "" }) => (
-  <div className={"flex flex-col min-w-full " + className}>
-    <p className="pl-4 pb-2 font-semibold text-2xl text-vwhite font-akira">
+  <div className={"flex flex-col min-w-full lg:min-w-[50%] " + className}>
+    <p className="pl-4 pb-2 font-semibold text-2xl text-vwhite font-akira lg:text-center">
       Pre - Sale
     </p>
     <Box>
@@ -386,10 +397,12 @@ const Games = ({ className = "" }) => {
     </div>
   );
 
+  const isLarge = useIsLarge();
+
   return (
     <div className={" " + className}>
       <div className={"flex flex-col min-w-full"}>
-        <Subtitle>Games</Subtitle>
+        <Subtitle hr={!isLarge}>Games</Subtitle>
         <div className="flex flex-row flex-wrap justify-center">
           <Game name="Slots" bg="bg-slots" />
           <Game name="Roulette" bg="bg-roulette" />
@@ -402,10 +415,10 @@ const Games = ({ className = "" }) => {
 
 const Title = ({ className = "" }) => (
   <div className={`flex flex-col w-max ${className}`}>
-    <p className="block text-4xl text-vstolenorange text-glow-vpurple font-vice font-bold text-center">
+    <p className="block text-4xl lg:text-[4rem] text-vstolenorange text-glow-vpurple font-vice font-bold text-center">
       CryptoBet
     </p>
-    <p className="block text-xl text-vwhite font-vice text-shadow text-center">
+    <p className="block text-xl text-vwhite font-vice text-shadow text-center lg:mt-3">
       Bulgaria&apos;s First Decentralized Casino
     </p>
     <div className="flex flex-row justify-center">
@@ -429,10 +442,12 @@ const Sponsors = () => {
     </div>
   );
 
+  const isLarge = useIsLarge();
+
   return (
-    <div className="flex flex-col justify-center min-w-full items-center">
-      <Subtitle>PARTNERS</Subtitle>
-      <div className="flex flex-row flex-wrap justify-center max-w-[80vw]">
+    <div className="flex flex-col justify-center min-w-full items-center lg:min-w-[50%]">
+      <Subtitle hr={!isLarge}>PARTNERS</Subtitle>
+      <div className="flex flex-row flex-wrap justify-center max-w-[80vw] lg:min-w-[50%]">
         <Sponsor src={polygon_logo} alt="polygon logo" w={130} h={32} />
         <Sponsor src="/launchhouse.webp" alt="launchhouse logo" w={82} h={82} />
         <Sponsor
@@ -454,11 +469,6 @@ const Sponsors = () => {
 };
 
 export default function Home({}) {
-  const [tokens, setTokens] = React.useState(12345);
-  const [referalCode, setReferalCode] = React.useState(
-    "https://cryptobet.bg/r/abcdef"
-  );
-  const [loggedIn, setLoggedIn] = React.useState(!true);
   const [data, setData] = React.useState(null);
 
   const isLarge = useIsLarge();
@@ -486,20 +496,39 @@ export default function Home({}) {
   endCounterTime = new Date(endCounterTime);
 
   return (
-    <div className="min-h-screen w-screen flex flex-col justify-top items-center bg-nogif">
+    <div className="min-h-screen flex flex-col justify-top items-center bg-nogif max-w-full">
+      {/* <YourTokens tokens={tokens} referalCode={referalCode} /> */}
       {isLarge ? <Navbar /> : <Hamburger />}
       <Title className="mt-[5rem]" />
-      <Hero />
-      {(() => {
-        if (loggedIn) {
-          return <YourTokens tokens={tokens} referalCode={referalCode} />;
-        }
-      })()}
-      <PreSaleCountdown start={startCounterTime} end={endCounterTime} />
+      {isLarge ? (
+        <div className="flex flex-row justify-evenly min-w-[80%] mt-8 items-center max-w-[80%]">
+          <PreSaleCountdown start={startCounterTime} end={endCounterTime} />
+          <Hero />
+        </div>
+      ) : (
+        <>
+          <Hero />
+          <PreSaleCountdown start={startCounterTime} end={endCounterTime} />
+        </>
+      )}
       <ChipsSell />
-      <WhatYouGet />
-      <Games className="mt-12 min-w-full" />
-      <Sponsors />
+      {isLarge ? (
+        <>
+          <div className="flex flex-row justify-evenly min-w-[80%] mt-8 items-center max-w-[80%]">
+            <WhatYouGet />
+            <div className="flex flex-col justify-start min-w-[50%]">
+              <Sponsors />
+              <Games className="mt-12 min-w-full" />
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <WhatYouGet />
+          <Sponsors />
+        </>
+      )}
+
       <Contact className="mb-2" />
       <Footer />
     </div>

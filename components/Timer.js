@@ -4,6 +4,7 @@ import { Box } from "./Boxes";
 
 export const TimerSSR = ({ finalDate, className = "" }) => {
   const [now, setNow] = React.useState(new Date(Date.now()));
+
   React.useEffect(() => {
     const interval = setInterval(() => setNow(new Date(Date.now())), 1000);
     return () => {
